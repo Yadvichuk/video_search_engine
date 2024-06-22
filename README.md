@@ -78,12 +78,12 @@ else:
     print("Size of DB:",result['storelen']) # Count of all videos which has been indexed
 ```
 ### Описание передаваемых параметров
-1) На ручку поиска searchVideo
+1) На ручку поиска searchVideo:
 ```
     query -- текст поискового запроса
     k -- число видео в выдаче (10 по умолчанию)
 ```
-2) На ручку добавления в индекс addVideoHandle
+2) На ручку добавления в индекс addVideoHandle:
 ```
     url -- прямая ссылка на mp4-файл видео
     description -- текстовое описание видео (пустая строка по умолчанию)
