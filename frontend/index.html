@@ -45,7 +45,6 @@ function searchVideo(k){
 	if(k==10)document.getElementById('out').innerHTML="&#128269;Ищем...";
 	var query = encodeURIComponent(document.getElementById('q').value);
 	last_query = query;
-	var sortf = encodeURIComponent(document.getElementById('sortf').value);
 	xhttp.onreadystatechange=function(){
 	  if(xhttp.readyState==4 && xhttp.status==200){
 		j=JSON.parse(xhttp.responseText);
@@ -70,7 +69,7 @@ function searchVideo(k){
 		document.getElementById('out2').innerHTML=tmp;
 	  }
 	}
-	xhttp.open("POST",location.href+"searchVideo?sort="+sortf+"&k="+k+"&query="+query,true);
+	xhttp.open("POST",location.href+"searchVideo?k="+k+"&query="+query,true);
 	xhttp.send(vote_array);
 	vote_array = Array();
 }
