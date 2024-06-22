@@ -2,21 +2,16 @@
 Поисковый движок коротких видеоклипов (до 1 минуты) нацеленный на русскоязычную аудиторию
 
 # Установка
-1) Настоятельно рекомендуется завести виртуальное окружение:
+1)
+
+  Склонируйте репозиторий, перейдите в папку и запустите скрипт настройки install.sh. После этого активируйте виртуальное окружение:
+  ```git clone 
+     cd ./video_search_engine/
+     bash ./install.sh
+     source .venv/bin/activate
   ```
-  conda create -n videoSearch python==3.10 pip
-  conda activate videoSearch
-  ```
-  Или
-  ```
-  python3 -m virtualenv .venv
-  source .venv/bin/activate
-  ```
-2) Установка зависимостей:
-   ```
-   pip install -r requirements.txt
-   ```
-   Также необходимо скачать веса модели [GigaAM-RNNT](https://github.com/salute-developers/GigaAM):
+
+2) Перед первым запуском необходимо скачать веса модели [GigaAM-RNNT](https://github.com/salute-developers/GigaAM):
    ```
    cd nn_utils
    bash downloader.sh
@@ -50,9 +45,6 @@ result = requests.get("http://85.113.39.151/yappy_search/searchVideo",
                                 ("k",k)
                           ])
 print(result.status_code)
-# 200 -- OK
-# 504 -- Endpoint is down, ask me in direct messages
-# 500 -- Bad request, check your parameters
 result = result.json()['result']
 for video in result:
     description = video['description']
@@ -77,9 +69,6 @@ result = requests.post("http://85.113.39.151/yappy_search/addVideoHandle",
                                 ("description",your_description)
                           ]) # It tooks about 25 seconds depends on video duration
 print(result.status_code)
-# 200 -- OK, you can parse JSON
-# 504 -- Endpoint is down, ask me in direct messages
-# 500 -- Bad request, check your parameters
 result = result.json()
 print(result['result']) # ok or fail
 if 'error' in result:
@@ -90,3 +79,8 @@ else:
     print("Indexing time:",result['time']) # Time (seconds)
     print("Size of DB:",result['storelen']) # Count of all videos which has been indexed
 ```
+### Описание передаваемых параметров
+### Описание ошибок
+200 -- OK
+504 -- Сервер упал, просим связаться с администратором
+500 -- В запросе переданы некорректные параметры
